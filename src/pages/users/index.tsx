@@ -4,11 +4,18 @@ import { Header } from "../../components/Header";
 import { Pagination } from "../../components/Pagination";
 import { Sidebar } from "../../components/Sidebar";
 import Link from 'next/Link';
+import { useEffect } from "react";
 
 export default function UserList() {
     const isWideVersion = useBreakpointValue({
         base: false,
         lg: true
+    })
+
+    useEffect(() => {
+        fetch('http://localhost:3000/api/users')
+        .then(response => response.json())
+        .then(data => console.log(data))
     })
 
     return (
