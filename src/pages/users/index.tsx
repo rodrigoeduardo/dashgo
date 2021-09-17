@@ -1,11 +1,12 @@
 import Link from 'next/Link';
 import { Box, useBreakpointValue, Flex, Heading, Button, Icon, Table, Thead, Tr, Td, Th, Checkbox, Tbody, Text, Spinner } from "@chakra-ui/react";
 import { RiAddLine, RiPencilLine } from "react-icons/ri";
-import { useQuery } from 'react-query';
+import { useState } from 'react';
 
 import { Header } from "../../components/Header";
 import { Pagination } from "../../components/Pagination";
 import { Sidebar } from "../../components/Sidebar";
+import { useUsers } from '../../services/hooks/useUsers';
 
 export default function UserList() {
     const [currentPage, setCurrentPage] = useState(1)
@@ -65,7 +66,7 @@ export default function UserList() {
                                     </Tr>
                                 </Thead>
                                 <Tbody>
-                                    {data.map(user => {
+                                    {data.users.map(user => {
                                         return (
                                             <Tr key={user.id}>
                                                 <Td px={["4", "4", "6"]}>
@@ -98,7 +99,11 @@ export default function UserList() {
                                 </Tbody>
                             </Table>
 
-                            <Pagination />
+                            <Pagination
+                                totalCountOfRegisters={data.totalCount}
+                                currentPage={currentPage}
+                                onPageChange={setCurrentPage}
+                            />
                         </>
                     ) }
                 </Box>
