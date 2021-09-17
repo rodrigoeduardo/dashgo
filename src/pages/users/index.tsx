@@ -25,7 +25,10 @@ export default function UserList() {
 
                 <Box flex="1" borderRadius={8} bg="gray.800" p="8">
                     <Flex mb="8" justify="space-between" align="center">
-                        <Heading size="lg" fontWeight="normal">Usuários</Heading>
+                        <Heading size="lg" fontWeight="normal">
+                            Usuários
+                            {!isLoading && isFetching && <Spinner size="sm" ml="4" color="gray.500" />}
+                        </Heading>
 
                         <Link href="/users/create" passHref>
                             <Button
